@@ -54,7 +54,7 @@ resetButton.addEventListener("click", function(){
 		squares[i].style.background = colors[i];
 	}
 	//change h1 background
-	h1.style.background = "#232323";
+	h1.style.background = "steelblue";
 });
 
 

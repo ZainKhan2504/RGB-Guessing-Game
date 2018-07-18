@@ -6,26 +6,39 @@ var colors = [
 "rgb(0, 0, 255)",
 "rgb(255, 0, 255)"
 ]
-var square = document.querySelectorAll(".square");
-var pickedColor = colors[3];
+var squares = document.querySelectorAll(".square");
+var pickedColor = pickColor();
 var colorDisplay = document.getElementById("colorDisplay");
+var messageDisplay = document.querySelector("#message");
 
 colorDisplay.textContent = pickedColor;
-for (var i = 0; i < square.length; i++) {
+for (var i = 0; i < squares.length; i++) {
 	//add initial color to squares
-	square[i].style.background = colors[i];
+	squares[i].style.background = colors[i];
 	//add click listeners to squares
-	square[i].addEventListener("click", function () {
+	squares[i].addEventListener("click", function () {
 		//grab the color of clicked square
 		var clickedColor = this.style.background;
 		//compare color to pickedColor
 		if(clickedColor === pickedColor)
 		{
-			alert("Correct!!");
+			messageDisplay.textContent = "Correct";
+			changeColor(clickedColor);
 		}
 		else
 		{
-			alert("Worng!!!");
+			this.style.background = "#232323";
+			messageDisplay.textContent = "Try Again";
 		}
 	});
+}
+function changeColor(color) {
+	// loop through all Squares
+	for (var i = 0; i < squares.length; i++) {
+		squares[i].style.background = color;
+	}
+}
+function pickColor() {
+	var random = Math.floor(Math.random() * colors.length);
+	return colors[random];
 }
